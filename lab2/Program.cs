@@ -8,8 +8,6 @@ namespace Yakobi_Zeidel_Methods
 {
     class Program
     {
-        static double eps = Math.Pow(10, -3);
-        static int stepcount = 0;
         
         static void Main(string[] args)
             {

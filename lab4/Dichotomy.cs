@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab3
+namespace lab4
 {
     class Dichotomy
     {
@@ -21,8 +21,8 @@ namespace lab3
             if (Math.Abs(x3 - x2) < eps)
             {
                 Console.WriteLine(iteration++ + ") x -" + String.Format("{0:f10}", (x2 + x3) / 2) + " nevyazka: " + String.Format("{0:f10}", 0 - Program.f((x2 + x3) / 2)) + "\n");
-                SimpleIteration simple = new SimpleIteration();
-                simple.Step((x2 + x3) / 2);
+                NewtonMethod newton = new NewtonMethod();
+                newton.Step((x2 + x3) / 2);
             }
             else Step(x2, x3);
         }

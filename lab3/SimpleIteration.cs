@@ -9,7 +9,7 @@ namespace lab3
     class SimpleIteration
     {
 
-        static double eps = Math.Pow(10, -8);
+        static double eps = 1E-8;
         static int iteration = 1;
         double f(double x) => Math.Pow(Math.Log(2 + x) / 5, 1 / 3f);
         public void Step(double x)

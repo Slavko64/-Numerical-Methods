@@ -4,39 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleIterationMethod
+namespace Yakobi_Zeidel_Methods
 {
-    class Program
+    
+    class Zeidel
     {
-        static double eps = Math.Pow(10,-3);
+        static double eps = 1E-3;
         static int stepcount = 0;
         static double[][] A = { new double[] { 0.38, -0.05, 0.01, 0.02, 0.07 }, new double[] { 0.052, 0.595, 0, -0.04, 0.04 }, new double[] { 0.03, 0, 0.478, -0.14, 0.08 }, new double[] { -0.06, 0.126, 0, 0.47, -0.02 }, new double[] { 0.25, 0, 0.09, 0.01, 0.56 }, };
         static double[] F = { 1.84, -1.170, -0.988, 0.918, -0.490 };
-        static void Step(double[] X)
+        static public void Step(double[][] A, double[] F, double[] X)
         {
             bool f = false;
             double temp;
             double[] X1 = new double[5];
-            for (int i = 0; i < X.Length; i++)
+            for (int i = 1; i <= X.Length; i++)
             {
-                X1[i] += X[i];
-                for (int j = 0; j < X.Length; j++)
+                for (int j = 1; j <= i - 1; j++)
                 {
-                    X1[i] -= A[i][j] * X[j];
+                    X1[i - 1] -= A[i - 1][j - 1] / A[i - 1][i - 1] * X1[j - 1];
                 }
-                X1[i] += F[i];
+                for (int j = i + 1; j <= A.Length; j++)
+                {
+                    X1[i - 1] -= A[i - 1][j - 1] / A[i - 1][i - 1] * X[j - 1];
+                }
+                X1[i - 1] += F[i - 1] / A[i - 1][i - 1];
             }
-
             for (int i = 0; i < X.Length; i++)
             {
-                if (Math.Abs(X1[i] - X[i]) < eps)    f = true;
+                if (Math.Abs(X1[i] - X[i]) < eps) f = true;
                 else
                 {
                     f = false;
+                    //if (stepcount == 30)
+                    //    f = true;
                     break;
                 }
             }
-           
             if (f == true)
             {
                 Console.WriteLine("X: ");
@@ -60,20 +64,9 @@ namespace SimpleIterationMethod
             else
             {
                 stepcount++;
-                Step(X1);
+                Step(A,F,X1);
             }
-        }
-        static void Main(string[] args)
-        {
-            double[] X = new double[5];
 
-            Random rand = new Random();
-            for (int i = 0; i < X.Length; i++)
-            {
-                X[i] = (double)rand.Next(-10000,10000);
-            }
-            Step(X);
-            Console.ReadLine();
         }
     }
 }

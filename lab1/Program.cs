@@ -53,7 +53,7 @@ namespace SimpleIterationMethod
                     {
                         temp += A[i][j] * X1[j];
                     }
-                    Console.WriteLine(String.Format("{0:f10}", (temp - F[i])));
+                    Console.WriteLine(String.Format("{0:f10}",(temp - F[i])));
                 }
             }
 

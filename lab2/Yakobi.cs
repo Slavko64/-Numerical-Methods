@@ -36,7 +36,7 @@ namespace Yakobi_Zeidel_Methods
                 {
                     f = false;
                     //if (stepcount == 30)
-                    //    f = true;
+                    //   f = true;
                     break;
                 }
             }
